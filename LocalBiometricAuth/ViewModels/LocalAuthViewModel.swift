@@ -1,8 +1,8 @@
 //
 //  LocalAuthViewModel.swift
-//  LocalAuth
+//  LocalBiometricAuth
 //
-//  Created by Renan Wurster on 14.04.25.
+//  Created by Renan Wurster on 15.04.25.
 //
 
 import Foundation
