@@ -9,9 +9,20 @@ import SwiftUI
 
 @main
 struct LocalBiometricAuthApp: App {
+    @StateObject private var localAuthViewModel = LocalAuthViewModel()
+    @Environment(\.scenePhase) var scenePhase
+    
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            LocalAuthView()
+        }
+        .environmentObject(localAuthViewModel)
+        .onChange(of: scenePhase) {
+            if scenePhase == .inactive {
+                localAuthViewModel.isUnlocked = false
+            }
         }
     }
 }
+
