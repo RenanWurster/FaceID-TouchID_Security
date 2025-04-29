@@ -11,14 +11,14 @@ struct HomeView: View {
     @EnvironmentObject private var localAuthViewModel: LocalAuthViewModel
     
     var body: some View {
-        VStack{
+        VStack {
             Text("Welcome to the Home View!")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
                 .padding(.bottom, 30)
             
-            Button("Logout"){
+            Button("Logout") {
                 localAuthViewModel.isUnlocked = false
             }
             .font(.title2)

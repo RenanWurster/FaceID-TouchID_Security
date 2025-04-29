@@ -15,20 +15,9 @@ class LocalAuthViewModel: ObservableObject {
     
     func authenticate() async {
         let context = LAContext()
-        var error: NSError?
         let reason = "Unlock your secure content"
         
         errorMessage = nil
-        
-        guard context
-            .canEvaluatePolicy(
-                .deviceOwnerAuthenticationWithBiometrics,
-                error: &error
-            )
-        else {
-            errorMessage = error?.localizedDescription
-            return
-        }
         
         do {
             let success = try await context.evaluatePolicy(
@@ -36,11 +25,13 @@ class LocalAuthViewModel: ObservableObject {
                 localizedReason: reason
             )
             isUnlocked = success
-            
+
         } catch {
             switch error {
             case LAError.userCancel:
                 errorMessage = "Authentication canceled."
+            case LAError.systemCancel:
+                errorMessage = "Authentication canceled by the system."
             case LAError.authenticationFailed:
                 errorMessage = "Authentication failed. Try again."
 
@@ -51,5 +42,3 @@ class LocalAuthViewModel: ObservableObject {
         }
     }
 }
-
-

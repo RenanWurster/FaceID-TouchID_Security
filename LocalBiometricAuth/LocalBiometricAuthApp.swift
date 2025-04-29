@@ -25,4 +25,3 @@ struct LocalBiometricAuthApp: App {
         }
     }
 }
-

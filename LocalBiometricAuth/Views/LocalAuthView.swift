@@ -11,14 +11,15 @@ import LocalAuthentication
 
 struct LocalAuthView: View {
     @State private var isAuthorize = false
-    @EnvironmentObject private var localAuthViewModel : LocalAuthViewModel
+    @EnvironmentObject private var localAuthViewModel: LocalAuthViewModel
 
     
     var body: some View {
         if localAuthViewModel.isUnlocked {
             HomeView()
         } else {
-            VStack{
+            
+            VStack {
                 Text("Please authenticate to continue.")
                     .font(.headline)
                     .padding()
